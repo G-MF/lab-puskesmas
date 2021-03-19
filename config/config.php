@@ -1,7 +1,7 @@
 <?php
 function base_url($url = null)
 {
-    $base_url = "http://obat-tradisional.test";
+    $base_url = "http://lab-puskesmas.test";
     if ($url != null) {
         return $base_url . "/" . $url;
     } else {
@@ -25,7 +25,7 @@ function page_active($page_now)
 $host = "localhost";
 $user = "root";
 $password = "";
-$name = "project_tanaman_obat";
+$name = "project_lab_puskes";
 
 $koneksi = mysqli_connect($host, $user, $password, $name);
 
