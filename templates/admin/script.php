@@ -59,6 +59,14 @@
         $('#modal-delete').modal('show');
     });
 
+    // FORMAT ANGKA SAJA
+    function Angkasaja(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
     // LIHAT PASSWORD
     function lihatpass(id) {
         var getid = document.getElementById(id).id;

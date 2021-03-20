@@ -78,4 +78,16 @@ if (isset($_POST['tambah'])) {
                 $_SESSION['alert'] = "Data Berhasil Dihapus";
                 header("location: ../user", true, 301);
             }
-        }
+        } else
+
+            // Reset Password
+            if (isset($_GET['resetid'])) {
+                $id_user   = $_GET['resetid'];
+                $pass      = md5('12345');
+
+                $submit = $koneksi->query("UPDATE user SET password = '$pass' WHERE id_user = '$id_user'");
+                if ($submit) {
+                    $_SESSION['alert'] = "Password Telah Direset";
+                    header("location: ../user", true, 301);
+                }
+            }

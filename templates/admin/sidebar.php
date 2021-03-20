@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-light-olive elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link navbar-olive">
+    <a href="<?= base_url('admin') ?>" class="brand-link navbar-olive">
         <img src="<?= base_url('assets/img/logo-puskes.png') ?>" class="brand-image" alt="Logo Puskes">
         <span class="brand-text font-weight-bold text-white">UPTD Puskesmas Mengkatip</span>
     </a>
@@ -40,7 +40,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link <?= page_active('pasien') ?>">
+                            <a href="<?= base_url('admin/pasien') ?>" class="nav-link <?= page_active('pasien') ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pasien</p>
                             </a>

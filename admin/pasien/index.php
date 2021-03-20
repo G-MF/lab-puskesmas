@@ -25,7 +25,7 @@ include_once '../../config/auth-cek.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Data User</h1>
+                            <h1 class="m-0 text-dark">Data Pasien</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -57,32 +57,39 @@ include_once '../../config/auth-cek.php';
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
+                                                    <th>No. KTP</th>
+                                                    <th>Nama</th>
+                                                    <th>Jenis Kelamin</th>
+                                                    <th>TTL</th>
+                                                    <th>Alamat</th>
+                                                    <th>Telpon</th>
                                                     <th>Username</th>
-                                                    <th>Role</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $data = $koneksi->query("SELECT * FROM user ORDER BY role = 'superadmin' DESC");
+                                                $data = $koneksi->query("SELECT * FROM pasien p INNER JOIN user u ON p.id_user = u.id_user ORDER BY p.id_pasien DESC");
                                                 foreach ($data as $row) :
                                                 ?>
                                                     <tr>
                                                         <td align="center"><?= $no++; ?></td>
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td align="center"><?= $row['role']; ?></td>
+                                                        <td align="center"><?= $row['no_ktp']; ?></td>
+                                                        <td><?= $row['nama']; ?></td>
+                                                        <td align="center"><?= $row['jk']; ?></td>
+                                                        <td>
+                                                            <?= $row['tempat_lahir'] . ' ' . date('d-m-Y', strtotime($row['tgl_lahir'])); ?>
+                                                        </td>
+                                                        <td><?= $row['alamat']; ?></td>
+                                                        <td align="center"><?= $row['telpon']; ?></td>
+                                                        <td align="center"><?= $row['username']; ?></td>
                                                         <td align="center">
-                                                            <a href="edit?id=<?= $row['id_user'] ?>" class="btn bg-gradient-purple btn-sm">
+                                                            <a href="edit?id=<?= $row['id_pasien'] ?>" class="btn bg-gradient-purple btn-sm">
                                                                 <i class="fa fa-edit"> Edit</i>
                                                             </a>
-                                                            <?php if ($row['role'] != 'superadmin') : ?>
-                                                                <button type="button" class="btn bg-gradient-maroon btn-sm delete" data-link="proses?id=<?= $row['id_user'] ?>" data-name="<?= $row['username'] ?>">
-                                                                    <i class="fa fa-trash"> Hapus</i>
-                                                                </button>
-                                                                <a href="proses?resetid=<?= $row['id_user'] ?>" class="btn bg-gradient-dark btn-sm">
-                                                                    <i class="fa fa-sync-alt"> Reset Password</i>
-                                                                </a>
-                                                            <?php endif ?>
+                                                            <button type="button" class="btn bg-gradient-maroon btn-sm delete" data-link="proses?id=<?= $row['id_pasien'] ?>" data-name="<?= $row['nama'] ?>">
+                                                                <i class="fa fa-trash"> Hapus</i>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach ?>
