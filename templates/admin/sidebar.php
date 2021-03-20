@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link <?= page_active('dokter') ?>">
+                            <a href="<?= base_url('admin/dokter') ?>" class="nav-link <?= page_active('dokter') ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dokter</p>
                             </a>
