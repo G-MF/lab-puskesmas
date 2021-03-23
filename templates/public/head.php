@@ -8,6 +8,10 @@
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/toastr/toastr.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
@@ -21,5 +25,19 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
         } */
+
+        .dropdown-item:hover {
+            background-color: #3d9970;
+            color: white;
+        }
+
+        .nav-item {
+            font-size: 17px !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: bold !important;
+        }
     </style>
 </head>

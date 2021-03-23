@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
@@ -39,7 +41,7 @@
                 <div class="card-body register-card-body">
                     <p class="login-box-msg font-weight-bold" style="font-size: 22px;">Pendaftaran Pasien</p>
 
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="" method="POST">
                         <div class="card-body">
 
                             <div class="form-group row">
@@ -124,7 +126,7 @@
                             </div>
 
 
-                            <button type="submit" class="btn bg-gradient-success btn-block font-weight-bold">
+                            <button type="submit" name="daftar" class="btn bg-gradient-success btn-block font-weight-bold">
                                 Daftar
                             </button>
 
@@ -149,10 +151,18 @@
     <script src="<?= base_url() ?>/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="<?= base_url() ?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url() ?>/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>/assets/dist/js/adminlte.min.js"></script>
 
     <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        });
         // FORMAT ANGKA SAJA
         function Angkasaja(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
@@ -178,3 +188,101 @@
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['daftar'])) {
+    $no_ktp       = strip_tags($_POST['no_ktp']);
+    $nama         = strip_tags($_POST['nama']);
+    $jk           = strip_tags($_POST['jk']);
+    $tempat_lahir = strip_tags($_POST['tempat_lahir']);
+    $tgl_lahir    = strip_tags($_POST['tgl_lahir']);
+    $alamat       = preg_replace("/(\r|\n)/", " ", strip_tags($_POST['alamat']));
+    $telpon       = strip_tags($_POST['telpon']);
+    $username     = strip_tags($_POST['username']);
+    $password     = strip_tags($_POST['password']);
+    $pass         = md5($password);
+
+    $cek_ktp  = $koneksi->query("SELECT * FROM pasien WHERE no_ktp = '$no_ktp'")->fetch_array();
+    $cek_user = $koneksi->query("SELECT * FROM user WHERE username = '$username'")->fetch_array();
+
+    if ($cek_ktp) {
+        $_SESSION['valid'] = [
+            'no_ktp'       => '',
+            'nama'         => $nama,
+            'jk'           => $jk,
+            'tempat_lahir' => $tempat_lahir,
+            'tgl_lahir'    => $tgl_lahir,
+            'alamat'       => $alamat,
+            'telpon'       => $telpon,
+            'username'     => $username
+        ];
+        echo "
+            <script type='text/javascript'>
+            Toast.fire({
+                type: 'error',
+                title: 'Nomor KTP Sudah Ada!'
+            })
+            </script>";
+        echo '<meta http-equiv="refresh" content="3; url=daftar">';
+    } else
+ if ($cek_user) {
+        $_SESSION['valid'] = [
+            'no_ktp'       => $no_ktp,
+            'nama'         => $nama,
+            'jk'           => $jk,
+            'tempat_lahir' => $tempat_lahir,
+            'tgl_lahir'    => $tgl_lahir,
+            'alamat'       => $alamat,
+            'telpon'       => $telpon,
+            'username'     => ''
+        ];
+        echo "
+            <script type='text/javascript'>
+            Toast.fire({
+                type: 'error',
+                title: 'Username Sudah Ada!'
+            })
+            </script>";
+        echo '<meta http-equiv="refresh" content="3; url=daftar">';
+    } else {
+
+        $submit   = $koneksi->query("INSERT INTO user VALUES(NULL, '$username', '$pass', 'pasien')");
+
+        if ($submit) {
+            $ambil_id = $koneksi->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1")->fetch_array();
+            $simpan   = $koneksi->query("INSERT INTO pasien VALUES(
+         NULL, '$no_ktp', '$nama', '$jk', '$tempat_lahir', '$tgl_lahir', '$alamat', '$telpon', '$ambil_id[id_user]'
+         )");
+            if ($simpan) {
+                echo "
+                <script type='text/javascript'>
+                Toast.fire({
+                    type: 'success',
+                    title: 'Pendaftaran Pasien Berhasil, Silahkan Login Dengan Akun Anda!'
+                })
+                </script>";
+                unset($_SESSION['valid']);
+                echo '<meta http-equiv="refresh" content="3; url=login">';
+            } else {
+                echo "
+                <script type='text/javascript'>
+                Toast.fire({
+                    type: 'error',
+                    title: 'Pendaftaran Gagal!'
+                }) 
+                </script>";
+                echo '<meta http-equiv="refresh" content="3; url=daftar">';
+            }
+        } else {
+            echo "
+            <script type='text/javascript'>
+            Toast.fire({
+                type: 'error',
+                title: 'Pendaftaran Gagal!'
+            }) 
+            </script>";
+            echo '<meta http-equiv="refresh" content="3; url=daftar">';
+        }
+    }
+}
+?>

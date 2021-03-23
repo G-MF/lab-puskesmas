@@ -111,7 +111,12 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <h4 class="m-0 text-bold">
-                                Selamat Datang Di Pelayanan UPTD Puskesmas Mengkatip
+                                <?php if (isset($_SESSION['role']) == 'pasien') : ?>
+                                    Selamat Datang <u><i><?= $_SESSION['nama_pasien'] ?></i></u> ! <br>
+                                    Di Pelayanan UPTD Puskesmas Mengkatip
+                                <?php else : ?>
+                                    Selamat Datang Di Pelayanan UPTD Puskesmas Mengkatip
+                                <?php endif; ?>
                             </h4>
                         </div>
                         <!-- <div class="col-sm-6">
@@ -148,7 +153,7 @@
 
                                     <div style="text-align: center;">
                                         <label class="alamat">
-                                            Alamat : Jl. Kelurahan, Mengkatip, Kec. Dusun Hilir, Kabupaten Barito Selatan, Kalimantan Tengah 73762 <br>
+                                            Alamat : Jalan Kelurahan Mengkatip, Kec. Dusun Hilir, Kabupaten Barito Selatan, Kalimantan Tengah 73762 <br>
                                             Telpon : 0815-8495-5500
                                         </label>
                                         <img src="<?= base_url('assets/img/puskes.jpeg') ?>" class="gambar-kantor">

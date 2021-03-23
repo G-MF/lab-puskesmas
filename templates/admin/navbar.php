@@ -43,11 +43,7 @@
                 <i class="far fa-user"> Nama Admin</i>
             </a>
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-lock mr-2"></i> Ubah Password
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
+                <a href="logout" class="dropdown-item">
                     <i class="fas fa-sign-out-alt mr-2"></i> Logout
                 </a>
             </div>

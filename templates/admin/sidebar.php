@@ -13,7 +13,7 @@
                 <img src="<?= base_url('assets/img/user.png') ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Superadmin</a>
+                <a href="" #" class="d-block">Superadmin</a>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav-item has-treeview <?= page_active('pasien') || page_active('dokter') || page_active('user') ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link <?= page_active('pasien') || page_active('dokter') || page_active('user') ? 'active' : '' ?>">
+                    <a href="" #" class="nav-link <?= page_active('pasien') || page_active('dokter') || page_active('user') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-database"></i>
                         <p>
                             Data Master
@@ -61,7 +61,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href=#" class="nav-link <?= page_active('nomor-antrian') ?>">
+                    <a href="#" class="nav-link <?= page_active('nomor-antrian') ?>">
                         <i class="nav-icon fas fa-list-ol"></i>
                         <p>
                             Nomor Antrian
@@ -70,7 +70,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href=#" class="nav-link <?= page_active('penerimaan-pasien') ?>">
+                    <a href="#" class="nav-link <?= page_active('penerimaan-pasien') ?>">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Penerimaan Pasien
@@ -79,7 +79,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href=#" class="nav-link <?= page_active('pemeriksaan-pasien') ?>">
+                    <a href="#" class="nav-link <?= page_active('pemeriksaan-pasien') ?>">
                         <i class="nav-icon fas fa-user-check"></i>
                         <p>
                             Pemeriksaan Pasien
@@ -88,10 +88,22 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href=#" class="nav-link <?= page_active('hasil-pemeriksaan') ?>">
+                    <a href="#" class="nav-link <?= page_active('hasil-pemeriksaan') ?>">
                         <i class="nav-icon fas fa-clipboard-check"></i>
                         <p>
                             Hasil Pemeriksaan
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Divider -->
+                <div class="dropdown-divider font-weight-bold text-bold"></div>
+
+                <li class="nav-item">
+                    <a href="logout" data-toggle="modal" data-target="#modal-logout" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Logout
                         </p>
                     </a>
                 </li>

@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
@@ -53,7 +55,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn bg-gradient-success btn-block font-weight-bold mb-3">
+                    <button type="submit" name="login" class="btn bg-gradient-success btn-block font-weight-bold mb-3">
                         Login
                     </button>
 
@@ -73,9 +75,81 @@
     <script src="<?= base_url() ?>/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="<?= base_url() ?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url() ?>/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>/assets/dist/js/adminlte.min.js"></script>
+
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000
+        });
+    </script>
 
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['login'])) {
+    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
+    $password = mysqli_real_escape_string($koneksi, $_POST['password']);
+    $pass     = md5($password);
+
+    $query = $koneksi->query("SELECT * FROM user WHERE username = '$username'");
+
+    // CEK USERNAME
+    if (mysqli_num_rows($query) === 1) {
+
+        // CEK PASSWORD
+        $data = mysqli_fetch_array($query);
+        if ($pass == $data['password']) {
+            $_SESSION['id_user']  = $data['id_user'];
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['role']     = $data['role'];
+
+            if ($data['role'] == 'superadmin') {
+                echo "
+                <script type='text/javascript'>
+                Toast.fire({
+                    type: 'success',
+                    title: 'Anda Login Sebagai Super Admin'
+                })
+                </script>";
+                echo '<meta http-equiv="refresh" content="2; url=admin">';
+            } else
+            if ($data['role'] == 'pasien') {
+                $pasien = $koneksi->query("SELECT * FROM pasien WHERE id_user = '$data[id_user]'")->fetch_array();
+                $_SESSION['nama_pasien'] = $pasien['nama'];
+                echo "
+                <script type='text/javascript'>
+                Toast.fire({
+                    type: 'success',
+                    title: 'Anda Login Sebagai Pasien'
+                })
+                </script>";
+                echo '<meta http-equiv="refresh" content="2; url=/">';
+            }
+        } else {
+            echo "
+            <script type='text/javascript'>
+            Toast.fire({
+                type: 'error',
+                title: 'Username atau Password Tidak Ditemukan'
+            })
+            </script>";
+        }
+    } else {
+        echo "
+            <script type='text/javascript'>
+            Toast.fire({
+                type: 'error',
+                title: 'Username atau Password Tidak Ditemukan'
+            }) 
+            </script>";
+    }
+}
+?>
