@@ -21,34 +21,25 @@
         $status     = 'Belum Selesai';
         $keterangan = strip_tags($_POST['keterangan']);
 
-        echo "
+        $submit = $koneksi->query("INSERT INTO nomor_antri VALUES(NULL, '$no_antri', '$id_pasien', '$tanggal', '$status', '$keterangan')");
+
+        if ($submit) {
+            echo "
             <script type='text/javascript'>
             Toast.fire({
                 type: 'success',
                 title: 'Anda Telah Mengambil Nomor Antrian Dengan Nomor $no_antri'
             })
             </script>";
-        die;
-
-        // $submit = $koneksi->query("INSERT INTO nomor_antri VALUES(NULL, '$no_antri', '$id_pasien', '$tanggal', '$status', '$keterangan')");
-
-        // if ($submit) {
-        //     echo "
-        //     <script type='text/javascript'>
-        //     Toast.fire({
-        //         type: 'success',
-        //         title: 'Anda Telah Mengambil Nomor Antrian Dengan Nomor $no_antri'
-        //     })
-        //     </script>";
-        //     header('Location: ' . $_SERVER['HTTP_REFERER']);
-        // }
-    } else {
-        echo "
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        } else {
+            echo "
         <script type='text/javascript'>
         Toast.fire({
             type: 'error',
             title: 'Nomor Antrian Gagal Diambil'
         })
         </script>";
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
     }

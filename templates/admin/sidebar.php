@@ -61,7 +61,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= page_active('nomor-antrian') ?>">
+                    <a href="<?= base_url('admin/nomor-antri') ?>" class="nav-link <?= page_active('nomor-antri') ?>">
                         <i class="nav-icon fas fa-list-ol"></i>
                         <p>
                             Nomor Antrian
@@ -70,7 +70,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= page_active('penerimaan-pasien') ?>">
+                    <a href="<?= base_url('admin/penerimaan-pasien') ?>" class="nav-link <?= page_active('penerimaan-pasien') ?>">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Penerimaan Pasien

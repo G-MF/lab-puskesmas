@@ -1,21 +1,6 @@
 <?php
 require_once '../../config/config.php';
 include_once '../../config/auth-cek.php';
-
-$bln = array(
-    '01' => 'Januari',
-    '02' => 'Februari',
-    '03' => 'Maret',
-    '04' => 'April',
-    '05' => 'Mei',
-    '06' => 'Juni',
-    '07' => 'Juli',
-    '08' => 'Agustus',
-    '09' => 'September',
-    '10' => 'Oktober',
-    '11' => 'November',
-    '12' => 'Desember'
-);
 ?>
 
 <!DOCTYPE html>
@@ -40,14 +25,14 @@ $bln = array(
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Data Nomor Antrian Pasien</h1>
-                        </div>
-                        <!-- <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Data Penerimaan Pasien</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <a href="tambah" class="btn bg-gradient-primary"><i class="fa fa-plus-square"> Tambah Data</i></a>
                             </ol>
-                        </div> -->
-                    </div>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content-header -->
@@ -74,23 +59,34 @@ $bln = array(
                                                     <th>No</th>
                                                     <th>Nomor Antri</th>
                                                     <th>Nama Pasien</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Status</th>
                                                     <th>Keterangan</th>
+                                                    <th>Tanggal Penerimaan</th>
+                                                    <th>Jam Periksa</th>
+                                                    <th>Status</th>
+                                                    <th>Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $data = $koneksi->query("SELECT * FROM nomor_antri n INNER JOIN pasien p ON n.id_pasien = p.id_pasien ORDER BY id_antri DESC");
+                                                $data = $koneksi->query("SELECT * FROM penerimaan p INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien ORDER BY id_penerimaan DESC");
                                                 foreach ($data as $row) :
                                                 ?>
-                                                    <tr align="center">
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['no_antri']; ?></td>
+                                                    <tr>
+                                                        <td align="center"><?= $no++; ?></td>
+                                                        <td align="center"><?= $row['no_antri']; ?></td>
                                                         <td><?= $row['nama']; ?></td>
-                                                        <td><?= date('d-m-Y', strtotime($row['tanggal'])); ?></td>
-                                                        <td><?= $row['status']; ?></td>
-                                                        <td align="left"><?= $row['keterangan']; ?></td>
+                                                        <td><?= $row['keterangan']; ?></td>
+                                                        <td align="center"><?= date('d-m-Y', strtotime($row['tgl_penerimaan'])); ?></td>
+                                                        <td align="center"><?= date('H:i', strtotime($row['jam_periksa'])) . ' WITA'; ?></td>
+                                                        <td align="center"><?= $row['status']; ?></td>
+                                                        <td align="center">
+                                                            <a href="edit?id=<?= $row['id_penerimaan'] ?>" class="btn bg-gradient-purple btn-sm">
+                                                                <i class="fa fa-edit"> Edit</i>
+                                                            </a>
+                                                            <button type="button" class="btn bg-gradient-maroon btn-sm delete" data-link="proses?id=<?= $row['id_penerimaan'] ?>" data-name="<?= $row['nama'] ?>">
+                                                                <i class="fa fa-trash"> Hapus</i>
+                                                            </button>
+                                                        </td>
                                                     </tr>
                                                 <?php endforeach ?>
                                             </tbody>
