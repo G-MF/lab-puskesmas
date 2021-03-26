@@ -87,7 +87,7 @@ if (isset($_POST['tambah'])) {
 
                 $submit = $koneksi->query("UPDATE user SET password = '$pass' WHERE id_user = '$id_user'");
                 if ($submit) {
-                    $_SESSION['alert'] = "Password Telah Direset";
+                    $_SESSION['alert'] = "Password Telah Direset Ke Default (12345)";
                     header("location: ../user", true, 301);
                 }
             }

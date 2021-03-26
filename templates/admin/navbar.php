@@ -40,10 +40,10 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-user"> Nama Admin</i>
+                <i class="far fa-user"> <?= isset($_SESSION['username']) ? $_SESSION['username'] : '' ?></i>
             </a>
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-                <a href="logout" class="dropdown-item">
+                <a href="#" data-toggle="modal" data-target="#modal-logout" class="dropdown-item">
                     <i class="fas fa-sign-out-alt mr-2"></i> Logout
                 </a>
             </div>

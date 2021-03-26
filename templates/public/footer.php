@@ -3,3 +3,97 @@
         <strong>Copyright &copy; UPTD PUSKESMAS MENGKATIP 2021
     </div>
 </footer>
+
+
+
+<!-- MODAL NOMOR ANTRI -->
+<div class="modal fade" id="modal-no-antri" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold">Ambil Nomor Antri Pelayanan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <?php
+            function set_nomor_antri($angka)
+            {
+                if ($angka < 100 && $angka > 9) {
+                    return '0' . $angka;
+                } elseif ($angka > 99) {
+                    return $angka;
+                } else {
+                    return '00' . $angka;
+                }
+            }
+            $tgl      = date('Y-m-d');
+            $ceknomor = $koneksi->query("SELECT MAX(no_antri) AS nomor FROM nomor_antri WHERE tanggal = '$tgl'")->fetch_array();
+
+            if ($ceknomor['nomor'] <= 99) {
+                $cek_no_pasien = $koneksi->query("SELECT * FROM nomor_antri WHERE id_pasien = '$_SESSION[id_pasien]' AND tanggal = '$tgl' ORDER BY no_antri DESC")->fetch_array();
+                if ($cek_no_pasien && $cek_no_pasien['status'] == 'Belum Selesai') { ?>
+                    <div class="modal-body">
+                        <h5>Mohon Maaf Anda Sudah Mengambil Nomor Antrian, Silahkan Selesaikan Layanan Yang Anda Ambil Pada Nomor Antrian Sebelumnya!</h5>
+                        <div class="dropdown-divider"></div>
+                        <h4 class="text-center font-weight-bold">
+                            Nomor Antrian Anda Saat Ini : <br>
+                            <u><?= $cek_no_pasien['no_antri']; ?></u>
+                        </h4>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button class="btn bg-gradient-dark text-white" type="button" data-dismiss="modal">
+                            <i class="fa fa-times"> Tutup</i>
+                        </button>
+                    </div>
+                <?php } elseif (($cek_no_pasien && $cek_no_pasien['status'] == 'Selesai') or (!$cek_no_pasien)) {
+                    $no_antri = set_nomor_antri($ceknomor['nomor'] + 1)
+                ?>
+                    <form action="proses-no-antri" method="POST">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="no_antri">Nomor Antri</label>
+                                <input type="text" class="form-control" name="no_antri" id="no_antri" value="<?= $no_antri ?>" readonly required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal" value="<?= $tgl ?>" readonly required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="keterangan">Keterangan</label>
+                                <textarea class="form-control" name="keterangan" id="keterangan" rows="3" placeholder="Isi Keperluan Anda" required></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-center">
+                            <button class="btn bg-gradient-primary text-white" type="submit" name="no-antri">
+                                <i class="fa fa-save"> Simpan</i>
+                            </button>
+                            <button class="btn bg-gradient-dark text-white" type="button" data-dismiss="modal">
+                                <i class="fa fa-times"> Batal</i>
+                            </button>
+                        </div>
+                    </form>
+                <?php }
+            } elseif ($ceknomor['nomor'] == 100) { ?>
+                <div class="modal-body text-justify">
+                    <h5>Mohon Maaf Nomor Antrian Pelayanan Sudah Habis, Silahkan Mengambil Nomor Antrian Pada Besok Hari.</h5>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button class="btn bg-gradient-dark text-white" type="button" data-dismiss="modal">
+                        <i class="fa fa-times"> Tutup</i>
+                    </button>
+                </div>
+            <?php } ?>
+
+        </div>
+
+    </div>
+</div>
+<!-- // MODAL NOMOR ANTRI -->

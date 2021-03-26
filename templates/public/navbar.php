@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="dropdown-item">
+                            <a href="#" data-toggle="modal" data-target="#modal-no-antri" class="dropdown-item">
                                 <i class="fas fa-list-ol"> Ambil Nomor Antrian</i>
                             </a>
                         </li>

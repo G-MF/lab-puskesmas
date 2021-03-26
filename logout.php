@@ -5,7 +5,8 @@ unset($_SESSION['id_user']);
 unset($_SESSION['username']);
 unset($_SESSION['role']);
 
-if (isset($_SESSION['nama_pasien'])) {
+if (isset($_SESSION['id_pasien'])) {
+    unset($_SESSION['id_pasien']);
     unset($_SESSION['nama_pasien']);
 }
 

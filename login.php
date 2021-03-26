@@ -123,6 +123,7 @@ if (isset($_POST['login'])) {
             } else
             if ($data['role'] == 'pasien') {
                 $pasien = $koneksi->query("SELECT * FROM pasien WHERE id_user = '$data[id_user]'")->fetch_array();
+                $_SESSION['id_pasien']   = $pasien['id_pasien'];
                 $_SESSION['nama_pasien'] = $pasien['nama'];
                 echo "
                 <script type='text/javascript'>
