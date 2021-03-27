@@ -25,11 +25,11 @@ include_once '../../config/auth-cek.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Tambah Data Penerimaan Pasien</h1>
+                            <h1 class="m-0 text-dark">Tambah Data Pemeriksaan Pasien</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <a href="<?= base_url('admin/penerimaan-pasien') ?>" class="btn bg-gradient-secondary"><i class="fa fa-arrow-left"> Kembali</i></a>
+                                <a href="<?= base_url('admin/pemeriksaan') ?>" class="btn bg-gradient-secondary"><i class="fa fa-arrow-left"> Kembali</i></a>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -56,22 +56,31 @@ include_once '../../config/auth-cek.php';
                                     <div class="card-body">
 
                                         <div class="form-group row">
-                                            <label for="id_antri" class="col-sm-2 col-form-label">Nomor Antri</label>
+                                            <label for="id_penerimaan" class="col-sm-2 col-form-label">ID Penerimaan</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control select2" name="id_antri" id="id_antri" data-placeholder="Pilih" style="width: 100%;" required>
+                                                <select class="form-control select2" name="id_penerimaan" id="id_penerimaan" data-placeholder="Pilih" style="width: 100%;" required>
                                                     <option value=""></option>
                                                     <?php
                                                     $tgl        = date('Y-m-d');
-                                                    $data_antri = $koneksi->query("SELECT * FROM nomor_antri n INNER JOIN pasien p ON n.id_pasien = p.id_pasien WHERE n.tanggal = '$tgl' AND n.status = 'Belum Selesai'");
-                                                    foreach ($data_antri as $item) :
+                                                    $penerimaan = $koneksi->query("SELECT * FROM penerimaan p INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien WHERE p.tgl_penerimaan = '$tgl'");
+                                                    foreach ($penerimaan as $item) :
                                                     ?>
-                                                        <option value="<?= $item['id_antri'] ?>" <?php if (isset($_SESSION['valid'])) {
-                                                                                                        if ($_SESSION['valid']['id_antri'] == $item['id_antri']) {
-                                                                                                            echo 'selected';
+                                                        <option value="<?= $item['id_penerimaan'] ?>" <?php
+                                                                                                        if (isset($_SESSION['valid'])) {
+                                                                                                            if ($_SESSION['valid']['id_penerimaan'] == $item['id_penerimaan']) {
+                                                                                                                echo 'selected';
+                                                                                                            }
                                                                                                         }
-                                                                                                    } ?>><?= $item['no_antri'] ?> (<?= $item['nama'] ?>)</option>
+                                                                                                        ?>><?= $item['id_penerimaan'] ?> (<?= $item['nama'] ?>)</option>
                                                     <?php endforeach; ?>
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="no_antri" class="col-sm-2 col-form-label">Nomor Antri Pasien</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="no_antri" name="no_antri" autocomplete="off" required readonly value="<?= isset($_SESSION['valid']) ? $_SESSION['valid']['no_antri'] : '' ?>">
                                             </div>
                                         </div>
 
@@ -90,9 +99,38 @@ include_once '../../config/auth-cek.php';
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="tgl_penerimaan" class="col-sm-2 col-form-label">Tanggal Penerimaan</label>
+                                            <label for="id_dokter" class="col-sm-2 col-form-label">Nama Dokter</label>
                                             <div class="col-sm-10">
-                                                <input type="date" class="form-control" name="tgl_penerimaan" id="tgl_penerimaan" autocomplete="off" required readonly value="<?= date('Y-m-d') ?>">
+                                                <select class="form-control select2" name="id_dokter" id="id_dokter" data-placeholder="Pilih" style="width: 100%;" required>
+                                                    <option value=""></option>
+                                                    <?php
+                                                    $tgl    = date('Y-m-d');
+                                                    $dokter = $koneksi->query("SELECT * FROM dokter ORDER BY nama ASC");
+                                                    foreach ($dokter as $item) :
+                                                    ?>
+                                                        <option value="<?= $item['id_dokter'] ?>" <?php
+                                                                                                    if (isset($_SESSION['valid'])) {
+                                                                                                        if ($_SESSION['valid']['id_dokter'] == $item['id_dokter']) {
+                                                                                                            echo 'selected';
+                                                                                                        }
+                                                                                                    }
+                                                                                                    ?>><?= $item['nama'] ?> (Poli : <?= $item['poli'] ?>)</option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="tgl_periksa" class="col-sm-2 col-form-label">Tanggal Periksa</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" name="tgl_periksa" id="tgl_periksa" autocomplete="off" required readonly value="<?= date('Y-m-d') ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="jam_periksa" class="col-sm-2 col-form-label">Jam Periksa</label>
+                                            <div class="col-sm-10">
+                                                <input type="time" class="form-control" name="jam_periksa" id="jam_periksa" autocomplete="off" required value="<?= date('H:i') ?>">
                                             </div>
                                         </div>
 
@@ -135,16 +173,18 @@ include_once '../../config/auth-cek.php';
     <?php include_once '../../templates/admin/script.php'; ?>
 
     <script>
-        $(document).on('change', '#id_antri', function(e) {
+        $(document).on('change', '#id_penerimaan', function(e) {
             e.preventDefault();
             $.post('proses.php', {
-                    id_antri: $(this).val()
+                    id_penerimaan: $(this).val()
                 },
                 function(data) {
                     let item = JSON.parse(data);
+                    let no_antri = item['no_antri'];
                     let nama = item['nama'];
                     let keterangan = item['keterangan'];
 
+                    $("#no_antri").val(no_antri);
                     $("#nama").val(nama);
                     $("#keterangan").val(keterangan);
                 }

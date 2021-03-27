@@ -25,7 +25,7 @@ include_once '../../config/auth-cek.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Data Penerimaan Pasien</h1>
+                            <h1 class="m-0 text-dark">Data Pemeriksaan Pasien</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -60,28 +60,34 @@ include_once '../../config/auth-cek.php';
                                                     <th>Nomor Antri</th>
                                                     <th>Nama Pasien</th>
                                                     <th>Keterangan</th>
-                                                    <th>Tanggal Penerimaan</th>
+                                                    <th>Dokter</th>
+                                                    <th>Tanggal Periksa</th>
+                                                    <th>Jam Periksa</th>
                                                     <th>Status</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $data = $koneksi->query("SELECT * FROM penerimaan p INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien ORDER BY id_penerimaan DESC");
+                                                $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri ORDER BY id_pemeriksaan DESC");
                                                 foreach ($data as $row) :
+                                                    $data_pasien = $koneksi->query("SELECT * FROM pasien WHERE id_pasien = '$row[id_pasien]'")->fetch_array();
+                                                    $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$row[id_dokter]'")->fetch_array();
                                                 ?>
                                                     <tr>
                                                         <td align="center"><?= $no++; ?></td>
                                                         <td align="center"><?= $row['no_antri']; ?></td>
-                                                        <td><?= $row['nama']; ?></td>
+                                                        <td><?= $data_pasien['nama']; ?></td>
                                                         <td><?= $row['keterangan']; ?></td>
-                                                        <td align="center"><?= date('d-m-Y', strtotime($row['tgl_penerimaan'])); ?></td>
+                                                        <td><?= $data_dokter['nama']; ?></td>
+                                                        <td align="center"><?= date('d-m-Y', strtotime($row['tgl_periksa'])); ?></td>
+                                                        <td align="center"><?= date('H:i', strtotime($row['jam_periksa'])) . ' WITA'; ?></td>
                                                         <td align="center"><?= $row['status']; ?></td>
                                                         <td align="center">
-                                                            <a href="edit?id=<?= $row['id_penerimaan'] ?>" class="btn bg-gradient-purple btn-sm">
+                                                            <a href="edit?id=<?= $row['id_pemeriksaan'] ?>" class="btn bg-gradient-purple btn-sm">
                                                                 <i class="fa fa-edit"> Edit</i>
                                                             </a>
-                                                            <button type="button" class="btn bg-gradient-maroon btn-sm delete" data-link="proses?id=<?= $row['id_penerimaan'] ?>" data-name="<?= $row['nama'] ?>">
+                                                            <button type="button" class="btn bg-gradient-maroon btn-sm delete" data-link="proses?id=<?= $row['id_pemeriksaan'] ?>" data-name="<?= $data_pasien['nama'] ?>">
                                                                 <i class="fa fa-trash"> Hapus</i>
                                                             </button>
                                                         </td>

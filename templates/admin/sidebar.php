@@ -79,7 +79,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= page_active('pemeriksaan-pasien') ?>">
+                    <a href="<?= base_url('admin/pemeriksaan') ?>" class="nav-link <?= page_active('pemeriksaan') ?>">
                         <i class="nav-icon fas fa-user-check"></i>
                         <p>
                             Pemeriksaan Pasien

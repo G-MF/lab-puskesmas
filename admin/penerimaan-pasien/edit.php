@@ -99,13 +99,6 @@ $data = $koneksi->query("SELECT * FROM penerimaan p INNER JOIN nomor_antri n ON 
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label for="jam_periksa" class="col-sm-2 col-form-label">Jam Periksa</label>
-                                            <div class="col-sm-10">
-                                                <input type="time" class="form-control" name="jam_periksa" id="jam_periksa" autocomplete="off" required value="<?= $data['jam_periksa'] ?>">
-                                            </div>
-                                        </div>
-
                                     </div>
 
                                     <div class="card-footer justify-content-center text-center">
@@ -143,6 +136,24 @@ $data = $koneksi->query("SELECT * FROM penerimaan p INNER JOIN nomor_antri n ON 
 
     <!-- Script -->
     <?php include_once '../../templates/admin/script.php'; ?>
+
+    <script>
+        $(document).on('change', '#id_antri', function(e) {
+            e.preventDefault();
+            $.post('proses.php', {
+                    id_antri: $(this).val()
+                },
+                function(data) {
+                    let item = JSON.parse(data);
+                    let nama = item['nama'];
+                    let keterangan = item['keterangan'];
+
+                    $("#nama").val(nama);
+                    $("#keterangan").val(keterangan);
+                }
+            );
+        });
+    </script>
 
 </body>
 
