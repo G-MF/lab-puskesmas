@@ -40,15 +40,15 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <style>
-    th {
-      text-align: center;
-      vertical-align: middle;
-      font-weight: bold;
-    }
-
     thead {
       background-color: #3d9970;
       color: white;
+    }
+
+    th {
+      text-align: center;
+      vertical-align: middle !important;
+      font-weight: bold;
     }
   </style>
 </head>

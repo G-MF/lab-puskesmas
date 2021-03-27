@@ -13,7 +13,7 @@
                 <img src="<?= base_url('assets/img/user.png') ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="" #" class="d-block">Superadmin</a>
+                <a href="" #" class="d-block"><?= isset($_SESSION['username']) ? $_SESSION['username'] : '' ?></a>
             </div>
         </div>
 
@@ -66,6 +66,7 @@
                         <p>
                             Nomor Antrian
                         </p>
+                        <span class="right badge badge-danger">New</span>
                     </a>
                 </li>
 
@@ -88,7 +89,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= page_active('hasil-pemeriksaan') ?>">
+                    <a href="<?= base_url('admin/hasil-pemeriksaan') ?>" class="nav-link <?= page_active('hasil-pemeriksaan') ?>">
                         <i class="nav-icon fas fa-clipboard-check"></i>
                         <p>
                             Hasil Pemeriksaan
