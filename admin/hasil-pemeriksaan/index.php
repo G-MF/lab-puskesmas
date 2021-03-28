@@ -89,6 +89,9 @@ include_once '../../config/auth-cek.php';
                                                         </td>
                                                         <td align="center"><?= date('d-m-Y', strtotime($row['tgl_hasil'])); ?></td>
                                                         <td align="center">
+                                                            <a href="print?id=<?= $row['id_hasil'] ?>" class="btn bg-gradient-lightblue btn-sm" target="blank">
+                                                                <i class="fa fa-print"> Print</i>
+                                                            </a>
                                                             <a href="detail?id=<?= $row['id_hasil'] ?>" class="btn bg-gradient-navy btn-sm">
                                                                 <i class="fa fa-info-circle"> Detail</i>
                                                             </a>

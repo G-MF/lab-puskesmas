@@ -192,6 +192,11 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
                                                 <td><?= $data['gds']; ?></td>
                                             </tr>
                                             <tr>
+                                                <th>GDP</th>
+                                                <td class="titik-dua">:</td>
+                                                <td><?= $data['gdp']; ?></td>
+                                            </tr>
+                                            <tr>
                                                 <th>Cholesterol</th>
                                                 <td class="titik-dua">:</td>
                                                 <td><?= $data['cholesterol']; ?></td>
