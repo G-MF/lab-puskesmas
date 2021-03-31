@@ -30,35 +30,48 @@
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview <?= page_active('pasien') || page_active('dokter') || page_active('user') ? 'menu-open' : '' ?>">
-                    <a href="" #" class="nav-link <?= page_active('pasien') || page_active('dokter') || page_active('user') ? 'active' : '' ?>">
-                        <i class="nav-icon fas fa-database"></i>
-                        <p>
-                            Data Master
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/pasien') ?>" class="nav-link <?= page_active('pasien') ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pasien</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/dokter') ?>" class="nav-link <?= page_active('dokter') ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dokter</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/user') ?>" class="nav-link <?= page_active('user') ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>User</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <?php if ($_SESSION['role'] == 'superadmin') : ?>
+                    <li class="nav-item has-treeview <?= page_active('pasien') || page_active('dokter') || page_active('user') ? 'menu-open' : '' ?>">
+                        <a href="" #" class="nav-link <?= page_active('pasien') || page_active('dokter') || page_active('user') ? 'active' : '' ?>">
+                            <i class="nav-icon fas fa-database"></i>
+                            <p>
+                                Data Master
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/pasien') ?>" class="nav-link <?= page_active('pasien') ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pasien</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/dokter') ?>" class="nav-link <?= page_active('dokter') ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokter</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/user') ?>" class="nav-link <?= page_active('user') ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>User</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($_SESSION['role'] == 'adminlab') : ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('admin/pasien') ?>" class="nav-link <?= page_active('pasien') ?>">
+                            <i class="nav-icon fas fa-user-injured"></i>
+                            <p>
+                                Pasien
+                            </p>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="nav-item">
                     <a href="<?= base_url('admin/nomor-antri') ?>" class="nav-link <?= page_active('nomor-antri') ?>">

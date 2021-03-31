@@ -72,7 +72,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link"> Hasil Tes</a>
+                    <a href="<?= base_url('page/hasil-pemeriksaan') ?>" class="nav-link"> Hasil Tes</a>
                 </li>
 
                 <li class="nav-item dropdown">

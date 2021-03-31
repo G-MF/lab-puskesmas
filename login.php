@@ -121,6 +121,16 @@ if (isset($_POST['login'])) {
                 </script>";
                 echo '<meta http-equiv="refresh" content="2; url=admin">';
             } else
+            if ($data['role'] == 'adminlab') {
+                echo "
+                <script type='text/javascript'>
+                Toast.fire({
+                    type: 'success',
+                    title: 'Anda Login Sebagai Admin Lab'
+                })
+                </script>";
+                echo '<meta http-equiv="refresh" content="2; url=admin">';
+            } else
             if ($data['role'] == 'pasien') {
                 $pasien = $koneksi->query("SELECT * FROM pasien WHERE id_user = '$data[id_user]'")->fetch_array();
                 $_SESSION['id_pasien']   = $pasien['id_pasien'];
