@@ -74,17 +74,24 @@ require_once '../config/auth-cek-pasien.php';
 
                                     <div class="callout callout-success">
                                         <span style="float: right;">
-                                            <a href="<?= base_url() ?>/page/print?id=<?= $item['id_hasil'] ?>" target="blank" class="btn bg-gradient-navy btn-sm">
+                                            <a href="<?= base_url() ?>/print/hasil-pemeriksaan?id=<?= $item['id_hasil'] ?>" target="blank" class="btn bg-gradient-navy btn-sm">
                                                 <i class="fa fa-print" style="color: white;"> Cetak</i>
                                             </a>
                                         </span>
-                                        <h5><b>No. Antri : <?= $item['no_antri'] ?></b></h5>
-                                        <p>
-                                            Dokter : <b><?= $data_dokter['nama'] ?> (Poli : <?= $data_dokter['poli'] ?>)</b> <br>
-                                            Keterangan : <b><?= $item['keterangan'] ?></b> <br>
-                                            Tanggal Pemeriksaan : <b><?= date('d-m-Y', strtotime($item['tgl_periksa'])); ?></b> <br>
-                                            Tanggal Hasil Pemeriksaan : <b><?= date('d-m-Y', strtotime($item['tgl_hasil'])); ?></b>
-                                        </p>
+                                        <h5>
+                                            <b>No. Antri : <?= $item['no_antri'] ?></b>
+                                            <small>(<?= date('d-m-Y', strtotime($item['tanggal'])); ?>)</small>
+                                        </h5>
+                                        Dokter : <b><?= $data_dokter['nama'] ?> (Poli : <?= $data_dokter['poli'] ?>)</b> <br>
+                                        Keterangan : <b><?= $item['keterangan'] ?></b>
+                                        <div class="row">
+                                            <div class="col-sm-3 font-italic">
+                                                Tanggal Pemeriksaan : <b><?= date('d-m-Y', strtotime($item['tgl_periksa'])); ?></b>
+                                            </div>
+                                            <div class="col-sm-4 font-italic">
+                                                Tanggal Hasil Pemeriksaan : <b><?= date('d-m-Y', strtotime($item['tgl_hasil'])); ?></b>
+                                            </div>
+                                        </div>
                                     </div>
 
 

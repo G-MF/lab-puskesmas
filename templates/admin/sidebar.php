@@ -64,10 +64,19 @@
 
                 <?php if ($_SESSION['role'] == 'adminlab') : ?>
                     <li class="nav-item">
+                        <a href="<?= base_url('admin/dokter') ?>" class="nav-link <?= page_active('dokter') ?>">
+                            <i class="nav-icon fas fa-user-md"></i>
+                            <p>
+                                Data Dokter
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="<?= base_url('admin/pasien') ?>" class="nav-link <?= page_active('pasien') ?>">
                             <i class="nav-icon fas fa-user-injured"></i>
                             <p>
-                                Pasien
+                                Data Pasien
                             </p>
                         </a>
                     </li>

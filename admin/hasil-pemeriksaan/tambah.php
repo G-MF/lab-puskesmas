@@ -62,7 +62,7 @@ include_once '../../config/auth-cek.php';
                                                     <option value=""></option>
                                                     <?php
                                                     $tgl         = date('Y-m-d');
-                                                    $pemeriksaan = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien");
+                                                    $pemeriksaan = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien WHERE pm.tgl_periksa = '$tgl'");
                                                     foreach ($pemeriksaan as $item) :
                                                     ?>
                                                         <option value="<?= $item['id_pemeriksaan'] ?>" <?php
@@ -246,8 +246,9 @@ include_once '../../config/auth-cek.php';
                 },
                 function(data) {
                     let item = JSON.parse(data);
+                    // console.log(item);
                     let no_antri = item['no_antri'];
-                    let nama = item['nama'];
+                    let nama = item[16];
                     let nama_dokter = item[24];
                     let keterangan = item['keterangan'];
                     let tgl_periksa = item['tgl_periksa'];

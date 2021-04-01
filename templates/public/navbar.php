@@ -52,7 +52,7 @@
 
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-            <?php if (isset($_SESSION['role']) == 'pasien') : ?>
+            <?php if (isset($_SESSION['nama_pasien'])) : ?>
                 <li class="nav-item dropdown">
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
                         Pelayanan

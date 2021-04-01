@@ -51,7 +51,7 @@
                 <?php } elseif (($cek_no_pasien && $cek_no_pasien['status'] == 'Selesai') or (!$cek_no_pasien)) {
                     $no_antri = set_nomor_antri($ceknomor['nomor'] + 1)
                 ?>
-                    <form action="proses-no-antri" method="POST">
+                    <form action="" method="POST">
                         <div class="modal-body">
 
                             <div class="form-group">

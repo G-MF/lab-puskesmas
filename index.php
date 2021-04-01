@@ -111,12 +111,16 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <h4 class="m-0 text-bold">
-                                <?php if (isset($_SESSION['role']) == 'pasien') : ?>
+                                <?php
+                                if (isset($_SESSION['nama_pasien'])) :
+                                ?>
                                     Selamat Datang <u><i><?= $_SESSION['nama_pasien'] ?></i></u> ! <br>
                                     Di Pelayanan UPTD Puskesmas Mengkatip
                                 <?php else : ?>
                                     Selamat Datang Di Pelayanan UPTD Puskesmas Mengkatip
-                                <?php endif; ?>
+                                <?php
+                                endif;
+                                ?>
                             </h4>
                         </div>
                         <!-- <div class="col-sm-6">
@@ -190,6 +194,7 @@
 
     <!-- REQUIRED SCRIPTS -->
     <?php include_once 'templates/public/script.php'; ?>
+    <?php include_once 'proses-no-antri.php'; ?>
 
 </body>
 

@@ -70,7 +70,7 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
             justify-content: right;
             text-align: center;
             float: right;
-            margin-top: 3vh;
+            margin-top: 8vh;
         }
 
         table {
@@ -194,7 +194,8 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
     </table>
 
     <div style="margin-top: 10px;">
-        <label>Kesimpulan Pemeriksaan : <?= $data['kesimpulan']; ?></label>
+        Kesimpulan Pemeriksaan :
+        <span style="text-align: justify;"><?= $data['kesimpulan']; ?></span>
     </div>
 
     <div class="ttd">
@@ -206,7 +207,7 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
         <br>
         <?= $data_dokter['nama']; ?> <br>
         <?= 'Poli ' . $data_dokter['poli']; ?> <br>
-        <?= $data_dokter['nip']; ?>
+        <?= 'NIP' . $data_dokter['nip']; ?>
     </div>
 
 </body>

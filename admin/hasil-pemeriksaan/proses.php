@@ -24,6 +24,7 @@ if (isset($_POST['tambah'])) {
     $kesimpulan     = $_POST['kesimpulan'];
     $tgl_hasil      = $_POST['tgl_hasil'];
 
+    $ambil_id_antri = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_pemeriksaan = p.id_penerimaan WHERE pm.id_pemeriksaan = '$id_pemeriksaan'")->fetch_array();
 
     $cek  = $koneksi->query("SELECT * FROM hasil_pemeriksaan WHERE id_pemeriksaan = '$id_pemeriksaan' AND tgl_hasil = '$tgl_hasil'")->fetch_array();
     if ($cek) {
@@ -57,6 +58,7 @@ if (isset($_POST['tambah'])) {
 
         if ($submit) {
             $_SESSION['alert'] = "Data Berhasil Disimpan";
+            $koneksi->query("UPDATE nomor_antri set status = 'Selesai' WHERE id_antri = '$ambil_id_antri[id_antri]'");
             unset($_SESSION['valid']);
             header("location: ../hasil-pemeriksaan", true, 301);
         } else {
