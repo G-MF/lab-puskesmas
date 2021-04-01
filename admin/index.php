@@ -1,6 +1,9 @@
 <?php
 require_once '../config/config.php';
 include_once '../config/auth-cek.php';
+
+$count_dokter = $koneksi->query("SELECT COUNT(*) as jml FROM dokter")->fetch_array();
+$count_pasien = $koneksi->query("SELECT COUNT(*) as jml FROM pasien")->fetch_array();
 ?>
 
 <!DOCTYPE html>
@@ -47,26 +50,26 @@ include_once '../config/auth-cek.php';
             <div class="col-lg-6 col-6">
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150</h3>
+                  <h3><?= $count_pasien['jml']; ?></h3>
                   <p>Data Pasien</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat Selengkapnya...<i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('admin/pasien'); ?>" class="small-box-footer">Lihat Selengkapnya...<i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
 
             <div class="col-lg-6 col-6">
               <div class="small-box bg-pink">
                 <div class="inner">
-                  <h3>53</h3>
+                  <h3><?= $count_dokter['jml']; ?></h3>
                   <p>Data Dokter</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat Selengkapnya...<i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('admin/dokter'); ?>" class="small-box-footer">Lihat Selengkapnya...<i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
 

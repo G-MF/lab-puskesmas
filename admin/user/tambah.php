@@ -1,6 +1,10 @@
 <?php
 require_once '../../config/config.php';
 include_once '../../config/auth-cek.php';
+
+if ($_SESSION['role'] != 'superadmin') {
+    header("location:javascript://history.go(-1)");
+}
 ?>
 
 <!DOCTYPE html>

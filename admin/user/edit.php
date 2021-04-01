@@ -2,6 +2,10 @@
 require_once '../../config/config.php';
 include_once '../../config/auth-cek.php';
 
+if ($_SESSION['role'] != 'superadmin') {
+    header("location:javascript://history.go(-1)");
+}
+
 $id   = isset($_GET['id']) ? $_GET['id'] : header("location: ../user", true, 301);
 $data = $koneksi->query("SELECT * FROM user WHERE id_user = '$id'")->fetch_array();
 ?>

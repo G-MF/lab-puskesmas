@@ -79,7 +79,11 @@
                         <p>
                             Nomor Antrian
                         </p>
-                        <span class="right badge badge-danger">New</span>
+                        <?php
+                        $now = date('Y-m-d');
+                        $count = $koneksi->query("SELECT COUNT(*) as jml FROM nomor_antri WHERE tanggal = '$now'")->fetch_array();
+                        ?>
+                        <span class="right badge badge-danger"><?= $count['jml'] ?></span>
                     </a>
                 </li>
 
@@ -110,7 +114,19 @@
                     </a>
                 </li>
 
-                <!-- Divider -->
+                <?php if ($_SESSION['role'] == 'adminlab') : ?>
+                    <div class="dropdown-divider font-weight-bold text-bold"></div>
+                    <li class="nav-item">
+                        <a href="<?= base_url('admin/edit-user') ?>" class="nav-link <?= page_active('edit-user') ?>">
+                            <i class="nav-icon fas fa-user-edit"></i>
+                            <p>
+                                Edit User
+                            </p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+
                 <div class="dropdown-divider font-weight-bold text-bold"></div>
 
                 <li class="nav-item">
