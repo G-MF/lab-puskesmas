@@ -1,6 +1,15 @@
 <?php
 require_once '../../config/config.php';
 include_once '../../config/auth-cek.php';
+
+$query1 = mysqli_query($koneksi, "SELECT max(kode_pasien) AS no FROM pasien");
+$data   = mysqli_fetch_array($query1);
+$no     = $data['no'];
+
+$nourut = (int) substr($no, 2, 3);
+$nourut++;
+
+$kodeotomatis = "P" . sprintf('%03s', $nourut);
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +63,13 @@ include_once '../../config/auth-cek.php';
 
                                 <form class="form-horizontal" action="proses" method="POST">
                                     <div class="card-body">
+                                        <div class="form-group row">
+                                            <label for="kode_pasien" class="col-sm-2 col-form-label">ID Pasien</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="kode_pasien" id="kode_pasien" autocomplete="off" required readonly value="<?= $kodeotomatis ?>">
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label for="no_ktp" class="col-sm-2 col-form-label">No. KTP</label>
                                             <div class="col-sm-10">

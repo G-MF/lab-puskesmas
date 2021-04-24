@@ -37,7 +37,9 @@
 
 <script>
     $(function() {
-        $('.select2').select2();
+        $('.select2').select2({
+            allowClear: true
+        });
 
         $("#example1").DataTable();
         $('#example2').DataTable({

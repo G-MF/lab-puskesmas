@@ -26,6 +26,178 @@
     </div>
 </div>
 
+<!-- ModalLaporan -->
+<div class="modal fade" id="modal-laporan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-bold" id="exampleModalLabel">Laporan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="accordion">
+
+                    <!-- DOKTER -->
+                    <div class="card">
+                        <a href="<?= base_url('admin/laporan/dokter') ?>" class="btn bg-gradient-navy btn-lg btn-block" target="_blank">
+                            Dokter
+                        </a>
+                    </div>
+
+                    <!-- PASIEN -->
+                    <div class="card">
+                        <a class="btn bg-gradient-navy btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" href="#pasien">
+                            Pasien
+                        </a>
+                        <div id="pasien" class="panel-collapse collapse">
+                            <form role="form" method="POST" target="_blank" action="<?= base_url('admin/laporan/pasien') ?>">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Cetak Berdasarkan Jenis Kelamin</label>
+                                        <select name="jk" class="form-control custom-select">
+                                            <option selected disabled>-Pilih-</option>
+                                            <option value="1">Laki-laki</option>
+                                            <option value="2">Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <button type="submit" name="cetak" class="btn bg-gradient-primary">
+                                        <i class="fa fa-print"> Cetak</i>
+                                    </button>
+                                    <button type="submit" name="cetak_semua" class="btn bg-gradient-info">
+                                        <i class="fa fa-print"> Cetak Semua Data</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- PEMERIMAAN -->
+                    <div class="card">
+                        <a class="btn bg-gradient-navy btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" href="#penerimaan">
+                            Penerimaan Pasien
+                        </a>
+                        <div id="penerimaan" class="panel-collapse collapse">
+                            <form role="form" method="POST" target="_blank" action="<?= base_url('admin/laporan/penerimaan-pasien') ?>">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Cetak Dari Tanggal</label>
+                                                <input type="date" class="form-control" name="tgl1">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Sampai Tanggal</label>
+                                                <input type="date" class="form-control" name="tgl2">
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <div class="my-auto">
+                                                    <button type="button" id="cek_cetak_pertanggal" class="btn bg-gradient-primary">
+                                                        <i class="fa fa-print"> Cetak</i>
+                                                    </button>
+                                                    <button type="submit" class="d-none" name="cetak_pertanggal" id="cetak_pertanggal"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $('#cek_cetak_pertanggal').click(function() {
+                                            let tgl1 = $('input[name=tgl1]').val();
+                                            let tgl2 = $('input[name=tgl2]').val();
+                                            if (tgl1 == '' || tgl2 == '') {
+                                                toastr.error('Pilih Kedua Tanggal Untuk Cetak Laporan!');
+                                            } else {
+                                                $('#cetak_pertanggal').click();
+                                            }
+                                        });
+                                    </script>
+
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Cetak Per Bulan</label>
+                                                <select class="form-control select2" name="bulan" data-placeholder="Pilih Bulan">
+                                                    <option value=""></option>
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Tahun</label>
+                                                <input type="number" class="form-control" name="tahun" maxlength="4" value="<?= date('Y') ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <div class="my-auto">
+                                                    <button type="button" id="cek_cetak_perbulan" class="btn bg-gradient-primary">
+                                                        <i class="fa fa-print"> Cetak</i>
+                                                    </button>
+                                                    <button type="submit" class="d-none" name="cetak_perbulan" id="cetak_perbulan"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $('#cek_cetak_perbulan').click(function() {
+                                            let bulan = $('input[name=bulan]').val();
+                                            let tahun = $('input[name=tahun]').val();
+                                            if (tahun == '') {
+                                                toastr.error('Tahun Tidak Boleh Kosong');
+                                            } else {
+                                                $('#cetak_perbulan').click();
+                                            }
+                                        });
+                                    </script>
+
+                                </div>
+
+                                <div class="card-footer">
+                                    <button type="submit" name="cetak_semua" class="btn bg-gradient-info">
+                                        <i class="fa fa-print"> Cetak Semua Data</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 // if (isset($_SESSION['alert_ubah_pw'])) {
 //     echo "<script>toastr.$_SESSION[sts]('$_SESSION[alert_ubah_pw]')</script>";

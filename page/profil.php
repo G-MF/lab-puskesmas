@@ -70,9 +70,9 @@ $data = $koneksi->query("SELECT * FROM pasien p INNER JOIN user u ON p.id_user =
                                     <div class="table-responsive">
                                         <table class="table table-striped" width="100%">
                                             <tr>
-                                                <th>ID</th>
+                                                <th>ID Pasien</th>
                                                 <td class="titik-dua-tabel">:</td>
-                                                <td><?= $data['id_user'] ?></td>
+                                                <td><?= $data['kode_pasien'] ?></td>
                                             </tr>
                                             <tr>
                                                 <th>No. KTP</th>

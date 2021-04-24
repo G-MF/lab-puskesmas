@@ -139,6 +139,17 @@
                 <div class="dropdown-divider font-weight-bold text-bold"></div>
 
                 <li class="nav-item">
+                    <a href="#" data-toggle="modal" data-target="#modal-laporan" class="nav-link">
+                        <i class="nav-icon fas fa-list-alt"></i>
+                        <p>
+                            Laporan
+                        </p>
+                    </a>
+                </li>
+
+                <div class="dropdown-divider font-weight-bold text-bold"></div>
+
+                <li class="nav-item">
                     <a href="logout" data-toggle="modal" data-target="#modal-logout" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>

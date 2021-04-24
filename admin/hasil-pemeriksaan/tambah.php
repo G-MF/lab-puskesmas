@@ -71,7 +71,7 @@ include_once '../../config/auth-cek.php';
                                                                                                                 echo 'selected';
                                                                                                             }
                                                                                                         }
-                                                                                                        ?>><?= $item['id_pemeriksaan'] ?> (<?= $item['nama'] ?>)</option>
+                                                                                                        ?>><?= $item['id_pemeriksaan'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -246,10 +246,10 @@ include_once '../../config/auth-cek.php';
                 },
                 function(data) {
                     let item = JSON.parse(data);
-                    // console.log(item);
+                    console.log(item);
                     let no_antri = item['no_antri'];
-                    let nama = item[16];
-                    let nama_dokter = item[24];
+                    let nama = item[17];
+                    let nama_dokter = item[25];
                     let keterangan = item['keterangan'];
                     let tgl_periksa = item['tgl_periksa'];
 

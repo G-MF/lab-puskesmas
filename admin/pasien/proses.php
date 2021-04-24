@@ -4,6 +4,7 @@ include_once '../../config/auth-cek.php';
 
 // Simpan
 if (isset($_POST['tambah'])) {
+    $kode_pasien  = $_POST['kode_pasien'];
     $no_ktp       = strip_tags($_POST['no_ktp']);
     $nama         = strip_tags($_POST['nama']);
     $jk           = strip_tags($_POST['jk']);
@@ -51,7 +52,7 @@ if (isset($_POST['tambah'])) {
         if ($submit) {
             $ambil_id = $koneksi->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1")->fetch_array();
             $simpan   = $koneksi->query("INSERT INTO pasien VALUES(
-            NULL, '$no_ktp', '$nama', '$jk', '$tempat_lahir', '$tgl_lahir', '$alamat', '$telpon', '$ambil_id[id_user]'
+            NULL, '$kode_pasien', '$no_ktp', '$nama', '$jk', '$tempat_lahir', '$tgl_lahir', '$alamat', '$telpon', '$ambil_id[id_user]'
             )");
             if ($simpan) {
                 $_SESSION['alert'] = "Data Berhasil Disimpan";

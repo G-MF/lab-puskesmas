@@ -72,7 +72,7 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
                                                     $penerimaan = $koneksi->query("SELECT * FROM penerimaan p INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien WHERE p.tgl_penerimaan = '$tgl'");
                                                     foreach ($penerimaan as $item) :
                                                     ?>
-                                                        <option value="<?= $item['id_penerimaan'] ?>" <?= $item['id_penerimaan'] == $data['id_penerimaan'] ? 'selected' : '' ?>><?= $item['id_penerimaan'] ?> (<?= $item['nama'] ?>)</option>
+                                                        <option value="<?= $item['id_penerimaan'] ?>" <?= $item['id_penerimaan'] == $data['id_penerimaan'] ? 'selected' : '' ?>><?= $item['id_penerimaan'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>

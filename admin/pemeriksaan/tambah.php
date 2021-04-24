@@ -71,7 +71,7 @@ include_once '../../config/auth-cek.php';
                                                                                                                 echo 'selected';
                                                                                                             }
                                                                                                         }
-                                                                                                        ?>><?= $item['id_penerimaan'] ?> (<?= $item['nama'] ?>)</option>
+                                                                                                        ?>><?= $item['id_penerimaan'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>

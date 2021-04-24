@@ -1,4 +1,15 @@
-<?php require_once 'config/config.php'; ?>
+<?php
+require_once 'config/config.php';
+
+$query1 = mysqli_query($koneksi, "SELECT max(kode_pasien) AS no FROM pasien");
+$data   = mysqli_fetch_array($query1);
+$no     = $data['no'];
+
+$nourut = (int) substr($no, 2, 3);
+$nourut++;
+
+$kodeotomatis = "P" . sprintf('%03s', $nourut);
+?>
 
 <!DOCTYPE html>
 <html>
@@ -192,6 +203,7 @@
 <?php
 if (isset($_POST['daftar'])) {
     $no_ktp       = strip_tags($_POST['no_ktp']);
+    $kode_pasien  = $kodeotomatis;
     $nama         = strip_tags($_POST['nama']);
     $jk           = strip_tags($_POST['jk']);
     $tempat_lahir = strip_tags($_POST['tempat_lahir']);
@@ -251,7 +263,7 @@ if (isset($_POST['daftar'])) {
         if ($submit) {
             $ambil_id = $koneksi->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1")->fetch_array();
             $simpan   = $koneksi->query("INSERT INTO pasien VALUES(
-         NULL, '$no_ktp', '$nama', '$jk', '$tempat_lahir', '$tgl_lahir', '$alamat', '$telpon', '$ambil_id[id_user]'
+         NULL, '$kode_pasien', '$no_ktp', '$nama', '$jk', '$tempat_lahir', '$tgl_lahir', '$alamat', '$telpon', '$ambil_id[id_user]'
          )");
             if ($simpan) {
                 echo "
@@ -282,6 +294,7 @@ if (isset($_POST['daftar'])) {
             }) 
             </script>";
             echo '<meta http-equiv="refresh" content="3; url=daftar">';
+            echo $koneksi->error;
         }
     }
 }

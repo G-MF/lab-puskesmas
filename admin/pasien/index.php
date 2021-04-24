@@ -57,6 +57,7 @@ include_once '../../config/auth-cek.php';
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
+                                                    <th>ID Pasien</th>
                                                     <th>No. KTP</th>
                                                     <th>Nama</th>
                                                     <th>Jenis Kelamin</th>
@@ -74,6 +75,7 @@ include_once '../../config/auth-cek.php';
                                                 ?>
                                                     <tr>
                                                         <td align="center"><?= $no++; ?></td>
+                                                        <td align="center"><?= $row['kode_pasien']; ?></td>
                                                         <td align="center"><?= $row['no_ktp']; ?></td>
                                                         <td><?= $row['nama']; ?></td>
                                                         <td align="center"><?= $row['jk']; ?></td>

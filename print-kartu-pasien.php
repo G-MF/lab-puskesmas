@@ -125,7 +125,7 @@ $data = $koneksi->query("SELECT * FROM pasien WHERE id_user = '$id'")->fetch_arr
             <tr>
                 <th>ID Pasien</th>
                 <td class="titik-tabel">:</td>
-                <td><?= $data['id_pasien'] ?></td>
+                <td><?= $data['kode_pasien'] ?></td>
             </tr>
             <tr>
                 <th>Nama</th>

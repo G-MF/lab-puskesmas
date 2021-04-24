@@ -71,7 +71,7 @@ $data = $koneksi->query("SELECT * FROM penerimaan p INNER JOIN nomor_antri n ON 
                                                     foreach ($data_antri as $item) :
                                                     ?>
                                                         <option value="<?= $item['id_antri'] ?>" <?= $item['id_antri'] == $data['id_antri'] ? 'selected' : '' ?>>
-                                                            <?= $item['no_antri'] ?> (<?= $item['nama'] ?>)
+                                                            <?= $item['no_antri'] ?>
                                                         </option>
                                                     <?php endforeach; ?>
                                                 </select>

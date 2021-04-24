@@ -69,7 +69,7 @@ include_once '../../config/auth-cek.php';
                                                                                                         if ($_SESSION['valid']['id_antri'] == $item['id_antri']) {
                                                                                                             echo 'selected';
                                                                                                         }
-                                                                                                    } ?>><?= $item['no_antri'] ?> (<?= $item['nama'] ?>)</option>
+                                                                                                    } ?>><?= $item['no_antri'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
