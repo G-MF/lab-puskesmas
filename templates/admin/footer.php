@@ -47,6 +47,7 @@
                         </a>
                     </div>
 
+
                     <!-- PASIEN -->
                     <div class="card">
                         <a class="btn bg-gradient-navy btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" href="#pasien">
@@ -77,6 +78,8 @@
                         </div>
                     </div>
 
+
+
                     <!-- PEMERIMAAN -->
                     <div class="card">
                         <a class="btn bg-gradient-navy btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" href="#penerimaan">
@@ -90,38 +93,27 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Cetak Dari Tanggal</label>
-                                                <input type="date" class="form-control" name="tgl1">
+                                                <input type="date" class="form-control" name="tgl1" id="tgl1_penerimaan">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Sampai Tanggal</label>
-                                                <input type="date" class="form-control" name="tgl2">
+                                                <input type="date" class="form-control" name="tgl2" id="tgl2_penerimaan">
                                             </div>
                                         </div>
                                         <div class="col-md">
                                             <div class="form-group">
                                                 <label>&nbsp;</label>
                                                 <div class="my-auto">
-                                                    <button type="button" id="cek_cetak_pertanggal" class="btn bg-gradient-primary">
+                                                    <button type="button" id="cek_cetak_pertanggal_penerimaan" class="btn bg-gradient-primary">
                                                         <i class="fa fa-print"> Cetak</i>
                                                     </button>
-                                                    <button type="submit" class="d-none" name="cetak_pertanggal" id="cetak_pertanggal"></button>
+                                                    <button type="submit" class="d-none" name="cetak_pertanggal" id="cetak_pertanggal_penerimaan"></button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <script>
-                                        $('#cek_cetak_pertanggal').click(function() {
-                                            let tgl1 = $('input[name=tgl1]').val();
-                                            let tgl2 = $('input[name=tgl2]').val();
-                                            if (tgl1 == '' || tgl2 == '') {
-                                                toastr.error('Pilih Kedua Tanggal Untuk Cetak Laporan!');
-                                            } else {
-                                                $('#cetak_pertanggal').click();
-                                            }
-                                        });
-                                    </script>
 
                                     <hr>
 
@@ -149,32 +141,21 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Tahun</label>
-                                                <input type="number" class="form-control" name="tahun" maxlength="4" value="<?= date('Y') ?>">
+                                                <input type="number" class="form-control" name="tahun" maxlength="4" value="<?= date('Y') ?>" id="tahun_penerimaan">
                                             </div>
                                         </div>
                                         <div class="col-md">
                                             <div class="form-group">
                                                 <label>&nbsp;</label>
                                                 <div class="my-auto">
-                                                    <button type="button" id="cek_cetak_perbulan" class="btn bg-gradient-primary">
+                                                    <button type="button" id="cek_cetak_perbulan_penerimaan" class="btn bg-gradient-primary">
                                                         <i class="fa fa-print"> Cetak</i>
                                                     </button>
-                                                    <button type="submit" class="d-none" name="cetak_perbulan" id="cetak_perbulan"></button>
+                                                    <button type="submit" class="d-none" name="cetak_perbulan" id="cetak_perbulan_penerimaan"></button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <script>
-                                        $('#cek_cetak_perbulan').click(function() {
-                                            let bulan = $('input[name=bulan]').val();
-                                            let tahun = $('input[name=tahun]').val();
-                                            if (tahun == '') {
-                                                toastr.error('Tahun Tidak Boleh Kosong');
-                                            } else {
-                                                $('#cetak_perbulan').click();
-                                            }
-                                        });
-                                    </script>
 
                                 </div>
 
@@ -187,6 +168,105 @@
                         </div>
                     </div>
 
+
+
+                    <!-- PEMERIKSAAN -->
+                    <div class="card">
+                        <a class="btn bg-gradient-navy btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" href="#pemeriksaan">
+                            Pemeriksaan Pasien
+                        </a>
+                        <div id="pemeriksaan" class="panel-collapse collapse">
+                            <form role="form" method="POST" target="_blank" action="<?= base_url('admin/laporan/pemeriksaan-pasien') ?>">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Cetak Dari Tanggal</label>
+                                                <input type="date" class="form-control" name="tgl1" id="tgl1_pemeriksaan">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Sampai Tanggal</label>
+                                                <input type="date" class="form-control" name="tgl2" id="tgl2_pemeriksaan">
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <div class="my-auto">
+                                                    <button type="button" id="cek_cetak_pertanggal_pemeriksaan" class="btn bg-gradient-primary">
+                                                        <i class="fa fa-print"> Cetak</i>
+                                                    </button>
+                                                    <button type="submit" class="d-none" name="cetak_pertanggal" id="cetak_pertanggal_pemeriksaan"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Cetak Per Bulan</label>
+                                                <select class="form-control select2" name="bulan" data-placeholder="Pilih Bulan">
+                                                    <option value=""></option>
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Tahun</label>
+                                                <input type="number" class="form-control" name="tahun" maxlength="4" value="<?= date('Y') ?>" id="tahun_pemeriksaan">
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <div class="my-auto">
+                                                    <button type="button" id="cek_cetak_perbulan_pemeriksaan" class="btn bg-gradient-primary">
+                                                        <i class="fa fa-print"> Cetak</i>
+                                                    </button>
+                                                    <button type="submit" class="d-none" name="cetak_perbulan" id="cetak_perbulan_pemeriksaan"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="card-footer">
+                                    <button type="submit" name="cetak_semua" class="btn bg-gradient-info">
+                                        <i class="fa fa-print"> Cetak Semua Data</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <!-- HASIL PEMERIKSAAN -->
+                    <div class="card">
+                        <a href="<?= base_url('admin/laporan/hasil-pemeriksaan') ?>" class="btn bg-gradient-navy btn-lg btn-block" target="_blank">
+                            Hasil Pemeriksaan
+                        </a>
+                    </div>
+
+
                 </div>
 
 
@@ -197,6 +277,48 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    // CEK VALIDASI PENERIMAAN
+    $('#cek_cetak_pertanggal_penerimaan').click(function() {
+        let tgl1 = $('#tgl1_penerimaan').val();
+        let tgl2 = $('#tgl2_penerimaan').val();
+        if (tgl1 == '' || tgl2 == '') {
+            toastr.error('Pilih Kedua Tanggal Untuk Cetak Laporan!');
+        } else {
+            $('#cetak_pertanggal_penerimaan').click();
+        }
+    });
+    $('#cek_cetak_perbulan_penerimaan').click(function() {
+        let tahun = $('#tahun_penerimaan').val();
+        if (tahun == '') {
+            toastr.error('Tahun Tidak Boleh Kosong');
+        } else {
+            $('#cetak_perbulan_penerimaan').click();
+        }
+    });
+
+    // CEK VALIDASI PEMERIKSAAN
+    $('#cek_cetak_pertanggal_pemeriksaan').click(function() {
+        let tgl1 = $('#tgl1_pemeriksaan').val();
+        let tgl2 = $('#tgl2_pemeriksaan').val();
+        if (tgl1 == '' || tgl2 == '') {
+            toastr.error('Pilih Kedua Tanggal Untuk Cetak Laporan!');
+        } else {
+            $('#cetak_pertanggal_pemeriksaan').click();
+        }
+    });
+
+    $('#cek_cetak_perbulan_pemeriksaan').click(function() {
+        let tahun = $('#tahun_pemeriksaan').val();
+        if (tahun == '') {
+            toastr.error('Tahun Tidak Boleh Kosong');
+        } else {
+            $('#cetak_perbulan_pemeriksaan').click();
+        }
+    });
+</script>
 
 <?php
 // if (isset($_SESSION['alert_ubah_pw'])) {
