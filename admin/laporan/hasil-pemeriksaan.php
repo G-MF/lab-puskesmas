@@ -106,6 +106,7 @@ $data = $koneksi->query("SELECT * FROM hasil_pemeriksaan h INNER JOIN pemeriksaa
                 <th rowspan="2">Nama</th>
                 <th rowspan="2">Alamat</th>
                 <th colspan="10">Hasil Pemeriksaan</th>
+                <th rowspan="2">Biaya</th>
             </tr>
             <tr>
                 <th>Leucosit</th>
@@ -140,6 +141,7 @@ $data = $koneksi->query("SELECT * FROM hasil_pemeriksaan h INNER JOIN pemeriksaa
                     <td align="center"><?= $row['trigliserida']; ?></td>
                     <td align="center"><?= $row['protein']; ?></td>
                     <td align="center"><?= $row['golongan_darah']; ?></td>
+                    <td align="right"><?= number_format($row['biaya'], 0, ',', '.'); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
