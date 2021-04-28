@@ -113,6 +113,18 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
                                             </div>
                                         </div>
 
+                                        <div class="form-group row">
+                                            <label for="biaya" class="col-sm-2 col-form-label">Biaya Periksa</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-olive">Rp</span>
+                                                    </div>
+                                                    <input type="text" class="form-control rupiah" name="biaya" id="biaya" autocomplete="off" required value="<?= $data['biaya']; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <hr>

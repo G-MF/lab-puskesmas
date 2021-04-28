@@ -28,6 +28,9 @@
 <script src="<?= base_url() ?>/assets/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= base_url() ?>/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
+<script src="<?= base_url() ?>/assets/jquery.mask.js"></script>
+<script src="<?= base_url() ?>/assets/jquery.mask.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="<?= base_url() ?>/assets/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -50,6 +53,11 @@
             "info": true,
             "autoWidth": false,
         });
+    });
+
+    // FORMAT RUPIAH
+    $(".rupiah").mask("000.000.000.000", {
+        reverse: true
     });
 
     $(".delete").click(function() {

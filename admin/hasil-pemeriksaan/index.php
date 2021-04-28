@@ -61,6 +61,7 @@ include_once '../../config/auth-cek.php';
                                                     <th>Data Dokter</th>
                                                     <th>Data Pemeriksaan</th>
                                                     <th>Tanggal</th>
+                                                    <th>Biaya</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
@@ -88,6 +89,7 @@ include_once '../../config/auth-cek.php';
                                                             Jam Periksa : <b><?= date('H:i', strtotime($row['jam_periksa'])) . ' WITA'; ?></b>
                                                         </td>
                                                         <td align="center"><?= date('d-m-Y', strtotime($row['tgl_hasil'])); ?></td>
+                                                        <td align="center"><?= number_format($row['biaya'], 0, ',', '.') ?></td>
                                                         <td align="center">
                                                             <a href="<?= base_url() ?>/print/hasil-pemeriksaan?id=<?= $row['id_hasil'] ?>" class="btn bg-gradient-lightblue btn-sm" target="blank">
                                                                 <i class="fa fa-print"> Print</i>

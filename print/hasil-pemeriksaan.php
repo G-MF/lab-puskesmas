@@ -99,24 +99,29 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
 
     <div class="judul">
         HASIL PEMERIKSAAN LABORATORIUM <br>
-        PUSKESMAS MENGKTIP
+        PUSKESMAS MENGKATIP
     </div>
 
     <table>
         <tr>
-            <td style="width: 7vh;">Nama</td>
+            <td style="width: 20vh;">Nama</td>
             <td align="center" width="2px">:</td>
             <td><?= $data_pasien['nama'] ?></td>
         </tr>
         <tr valign="top">
-            <td style="width: 7vh;">Alamat</td>
+            <td style="width: 20vh;">Alamat</td>
             <td align="center" width="2px">:</td>
             <td><?= $data_pasien['alamat'] ?></td>
         </tr>
         <tr>
-            <td style="width: 7vh;">Tanggal</td>
+            <td style="width: 20vh;">Tanggal</td>
             <td align="center" width="2px">:</td>
             <td><?= date('d-m-Y', strtotime($data['tgl_hasil'])); ?></td>
+        </tr>
+        <tr>
+            <td style="width: 20vh;">Biaya Pemeriksaan</td>
+            <td align="center" width="2px">:</td>
+            <td><?= 'Rp. ' . number_format($data['biaya'], 0, ',', '.'); ?></td>
         </tr>
     </table>
 

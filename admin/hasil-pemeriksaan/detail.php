@@ -147,6 +147,11 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
                                                 <td class="titik-dua">:</td>
                                                 <td><?= date('H:i', strtotime($data['jam_periksa'])) . ' WITA'; ?></td>
                                             </tr>
+                                            <tr>
+                                                <th>Biaya Pemeriksaan</th>
+                                                <td class="titik-dua">:</td>
+                                                <td><?= 'Rp. ' . number_format($data['biaya'], 0, ',', '.'); ?></td>
+                                            </tr>
                                         </table>
                                     </div>
                                 </div>

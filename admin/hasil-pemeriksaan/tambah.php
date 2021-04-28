@@ -112,6 +112,18 @@ include_once '../../config/auth-cek.php';
                                             </div>
                                         </div>
 
+                                        <div class="form-group row">
+                                            <label for="biaya" class="col-sm-2 col-form-label">Biaya Periksa</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-olive">Rp</span>
+                                                    </div>
+                                                    <input type="text" class="form-control rupiah" name="biaya" id="biaya" autocomplete="off" required value="<?= isset($_SESSION['valid']) ? $_SESSION['valid']['biaya'] : '' ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <hr>

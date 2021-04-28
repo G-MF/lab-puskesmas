@@ -21,6 +21,7 @@ if (isset($_POST['tambah'])) {
     $trigliserida   = $_POST['trigliserida'];
     $protein        = $_POST['protein'];
     $golongan_darah = $_POST['golongan_darah'];
+    $biaya          = str_replace('.', '', $_POST['biaya']);
     $kesimpulan     = $_POST['kesimpulan'];
     $tgl_hasil      = $_POST['tgl_hasil'];
 
@@ -47,13 +48,14 @@ if (isset($_POST['tambah'])) {
             'protein'        => $protein,
             'golongan_darah' => $golongan_darah,
             'kesimpulan'     => $kesimpulan,
-            'tgl_hasil'     => $kesimpulan,
+            'tgl_hasil'      => $tgl_lahir,
+            'biaya'          => $biaya,
         ];
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
 
         $submit = $koneksi->query("INSERT INTO hasil_pemeriksaan VALUES(
-            NULL, '$id_pemeriksaan', '$leucosit', '$trombosit', '$malaria', '$rapid_covid', '$gds', '$gdp', '$cholesterol', '$trigliserida', '$protein', '$golongan_darah', '$kesimpulan', '$tgl_hasil'
+            NULL, '$id_pemeriksaan', '$leucosit', '$trombosit', '$malaria', '$rapid_covid', '$gds', '$gdp', '$cholesterol', '$trigliserida', '$protein', '$golongan_darah', '$biaya', '$kesimpulan', '$tgl_hasil'
             )");
 
         if ($submit) {
@@ -81,7 +83,8 @@ if (isset($_POST['tambah'])) {
                 'protein'        => $protein,
                 'golongan_darah' => $golongan_darah,
                 'kesimpulan'     => $kesimpulan,
-                'tgl_hasil'     => $kesimpulan,
+                'tgl_hasil'      => $tgl_hasil,
+                'biaya'          => $biaya,
             ];
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
@@ -107,6 +110,7 @@ if (isset($_POST['tambah'])) {
         $trigliserida   = $_POST['trigliserida'];
         $protein        = $_POST['protein'];
         $golongan_darah = $_POST['golongan_darah'];
+        $biaya          = str_replace('.', '', $_POST['biaya']);
         $kesimpulan     = $_POST['kesimpulan'];
         $tgl_hasil      = $_POST['tgl_hasil'];
 
@@ -129,6 +133,7 @@ if (isset($_POST['tambah'])) {
                     trigliserida   = '$trigliserida', 
                     protein        = '$protein', 
                     golongan_darah = '$golongan_darah', 
+                    biaya          = '$biaya', 
                     kesimpulan     = '$kesimpulan', 
                     tgl_hasil      = '$tgl_hasil'
                     WHERE id_hasil = '$id_hasil'
