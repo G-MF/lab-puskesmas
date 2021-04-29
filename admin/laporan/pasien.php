@@ -9,9 +9,9 @@ if (isset($_POST['cetak'])) {
     } else {
         $jk = 'Perempuan';
     }
-    $data = $koneksi->query("SELECT * FROM pasien p INNER JOIN user u ON p.id_user = u.id_user WHERE p.jk = '$jk' ORDER BY p.id_pasien DESC");
+    $data = $koneksi->query("SELECT * FROM pasien p INNER JOIN user u ON p.id_user = u.id_user WHERE p.jk = '$jk' ORDER BY p.id_pasien ASC");
 } else {
-    $data = $koneksi->query("SELECT * FROM pasien p INNER JOIN user u ON p.id_user = u.id_user ORDER BY p.id_pasien DESC");
+    $data = $koneksi->query("SELECT * FROM pasien p INNER JOIN user u ON p.id_user = u.id_user ORDER BY p.id_pasien ASC");
 }
 ?>
 

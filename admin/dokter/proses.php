@@ -56,13 +56,12 @@ if (isset($_POST['tambah'])) {
             if ($nip == $item['nip'] && !empty($item['nip'])) {
                 $_SESSION['alert'] = 'NIP Sudah Ada!';
                 header("location: edit?id=$id_dokter", true, 301);
-                exit;
             } else {
                 $sts .= 'next';
             }
         }
 
-        if (!empty($sts)) {
+        if (empty($sts)) {
             $submit = $koneksi->query("UPDATE dokter SET
                 nama   = '$nama',
                 nip    = '$nip',
@@ -72,6 +71,7 @@ if (isset($_POST['tambah'])) {
                 poli   = '$poli'
                 WHERE id_dokter = '$id_dokter'
             ");
+            var_dump($submit, $koneksi->error);
             if ($submit) {
                 $_SESSION['alert'] = "Data Berhasil Diubah";
                 header("location: ../dokter", true, 301);

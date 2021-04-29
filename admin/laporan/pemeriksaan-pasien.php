@@ -21,7 +21,7 @@ if (isset($_POST['cetak_pertanggal'])) :
     $tgl1 = $_POST['tgl1'];
     $tgl2 = $_POST['tgl2'];
 
-    $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri WHERE pm.tgl_periksa BETWEEN '$tgl1' AND '$tgl2' ORDER BY id_pemeriksaan DESC");
+    $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri WHERE pm.tgl_periksa BETWEEN '$tgl1' AND '$tgl2' ORDER BY id_pemeriksaan ASC");
     $label = tgl_indo($tgl1) . ' s/d ' . tgl_indo($tgl2);
 
 elseif (isset($_POST['cetak_perbulan'])) :
@@ -29,15 +29,15 @@ elseif (isset($_POST['cetak_perbulan'])) :
     $tahun = $_POST['tahun'];
 
     if ($bulan == '') :
-        $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri WHERE YEAR(tgl_periksa) = '$tahun' ORDER BY id_pemeriksaan DESC");
+        $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri WHERE YEAR(tgl_periksa) = '$tahun' ORDER BY id_pemeriksaan ASC");
         $label = 'Tahun ' . $tahun;
     else :
-        $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri WHERE MONTH(tgl_periksa) = '$bulan' AND YEAR(tgl_periksa) = '$tahun' ORDER BY id_pemeriksaan DESC");
+        $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri WHERE MONTH(tgl_periksa) = '$bulan' AND YEAR(tgl_periksa) = '$tahun' ORDER BY id_pemeriksaan ASC");
         $label = 'Bulan ' . $bln[$bulan] . ' Tahun ' . $tahun;
     endif;
 
 else :
-    $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri ORDER BY id_pemeriksaan DESC");
+    $data = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri ORDER BY id_pemeriksaan ASC");
     $label = '';
 endif;
 ?>

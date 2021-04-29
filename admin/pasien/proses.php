@@ -56,8 +56,8 @@ if (isset($_POST['tambah'])) {
             )");
             if ($simpan) {
                 $_SESSION['alert'] = "Data Berhasil Disimpan";
-                unset($_SESSION['valid']);
                 header("location: ../pasien", true, 301);
+                unset($_SESSION['valid']);
             } else {
                 $_SESSION['alert'] = 'Data Gagal Disimpan!';
                 header("location: tambah", true, 301);
