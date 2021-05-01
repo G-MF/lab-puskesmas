@@ -142,7 +142,7 @@ if (isset($_POST['login'])) {
                     title: 'Anda Login Sebagai Pasien'
                 })
                 </script>";
-                echo '<meta http-equiv="refresh" content="2; url=/">';
+                echo '<meta http-equiv="refresh" content="2; url=' . base_url() . '">';
             }
         } else {
             echo "

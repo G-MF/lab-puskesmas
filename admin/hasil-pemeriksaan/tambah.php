@@ -62,7 +62,7 @@ include_once '../../config/auth-cek.php';
                                                     <option value=""></option>
                                                     <?php
                                                     $tgl         = date('Y-m-d');
-                                                    $pemeriksaan = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien WHERE pm.tgl_periksa = '$tgl'");
+                                                    $pemeriksaan = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien WHERE pm.tgl_periksa = '$tgl' AND pm.id_pemeriksaan NOT IN (SELECT id_pemeriksaan FROM hasil_pemeriksaan)");
                                                     foreach ($pemeriksaan as $item) :
                                                     ?>
                                                         <option value="<?= $item['id_pemeriksaan'] ?>" <?php
