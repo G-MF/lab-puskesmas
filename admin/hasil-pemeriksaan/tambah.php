@@ -119,7 +119,7 @@ include_once '../../config/auth-cek.php';
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text bg-olive">Rp</span>
                                                     </div>
-                                                    <input type="text" class="form-control rupiah" name="biaya" id="biaya" autocomplete="off" required value="<?= isset($_SESSION['valid']) ? $_SESSION['valid']['biaya'] : '' ?>">
+                                                    <input type="text" class="form-control" name="biaya" id="biaya" autocomplete="off" readonly required value="<?= isset($_SESSION['valid']) ? $_SESSION['valid']['biaya'] : '' ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -251,6 +251,13 @@ include_once '../../config/auth-cek.php';
     <?php include_once '../../templates/admin/script.php'; ?>
 
     <script>
+        function rupiah(angka){
+            var reverse = angka.toString().split('').reverse().join(''),
+            ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
+            return ribuan;
+        }
+
         $(document).on('change', '#id_pemeriksaan', function(e) {
             e.preventDefault();
             $.post('proses.php', {
@@ -258,21 +265,56 @@ include_once '../../config/auth-cek.php';
                 },
                 function(data) {
                     let item = JSON.parse(data);
-                    console.log(item);
                     let no_antri = item['no_antri'];
                     let nama = item[17];
                     let nama_dokter = item[25];
                     let keterangan = item['keterangan'];
                     let tgl_periksa = item['tgl_periksa'];
 
+                    var biaya = 0;
+
+                    if (keterangan == "Leucosit"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "Trombosit"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "Malaria"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "Rapid Covid 19"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "GDS"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "GDP"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "Cholesterol"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "Trigliserida"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "Protein"){
+                        biaya = 10000;
+                    }else
+                    if (keterangan == "Golongan Darah"){
+                        biaya = 10000;
+                    }
+
                     $("#no_antri").val(no_antri);
                     $("#nama").val(nama);
                     $("#nama_dokter").val(nama_dokter);
-                    $("#keterangan").val(keterangan);
                     $("#tgl_periksa").val(tgl_periksa);
+                    $("#keterangan").val(keterangan);
+                    $("#biaya").val(rupiah(biaya));
                 }
             );
         });
+ 
+		
     </script>
 
 </body>

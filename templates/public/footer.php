@@ -66,7 +66,20 @@
 
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
-                                <textarea class="form-control" name="keterangan" id="keterangan" rows="3" placeholder="Isi Keperluan Anda" required></textarea>
+                                <!-- <textarea class="form-control" name="keterangan" id="keterangan" rows="3" placeholder="Isi Keperluan Anda" required></textarea> -->
+                                <select name="keterangan" id="keterangan" class="form-control" required>
+                                    <option value="" selected disabled>--Pilih Keperluan Anda--</option>
+                                    <option value="Leucosit">Leucosit</option>
+                                    <option value="Trombosit">Trombosit</option>
+                                    <option value="Malaria">Malaria</option>
+                                    <option value="Rapid Covid 19">Rapid Covid 19</option>
+                                    <option value="GDS">GDS</option>
+                                    <option value="GDP">GDP</option>
+                                    <option value="Cholesterol">Cholesterol</option>
+                                    <option value="Trigliserida">Trigliserida</option>
+                                    <option value="Protein">Protein</option>
+                                    <option value="Golongan Darah">Golongan Darah</option>
+                                </select>
                             </div>
 
                         </div>

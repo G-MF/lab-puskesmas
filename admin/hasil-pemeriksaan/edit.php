@@ -65,11 +65,11 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
                                         <div class="form-group row">
                                             <label for="id_pemeriksaan" class="col-sm-2 col-form-label">ID Pemeriksaan</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control select2" name="id_pemeriksaan" id="id_pemeriksaan" data-placeholder="Pilih" style="width: 100%;" required>
-                                                    <option value=""></option>
+                                                <select class="form-control" name="id_pemeriksaan" id="id_pemeriksaan" required>
                                                     <?php
                                                     $tgl         = date('Y-m-d');
-                                                    $pemeriksaan = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien");
+                                                    // $pemeriksaan = $koneksi->query("SELECT * FROM pemeriksaan pm INNER JOIN penerimaan p ON pm.id_penerimaan = p.id_penerimaan INNER JOIN nomor_antri n ON p.id_antri = n.id_antri INNER JOIN pasien pn ON n.id_pasien = pn.id_pasien");
+                                                    $pemeriksaan = $koneksi->query("SELECT * FROM hasil_pemeriksaan WHERE id_hasil = '$id'");
                                                     foreach ($pemeriksaan as $item) :
                                                     ?>
                                                         <option value="<?= $item['id_pemeriksaan'] ?>" <?= $data['id_pemeriksaan'] == $item['id_pemeriksaan'] ? 'selected' : '' ?>><?= $item['id_pemeriksaan'] ?></option>
@@ -120,7 +120,7 @@ $data_dokter = $koneksi->query("SELECT * FROM dokter WHERE id_dokter = '$data[id
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text bg-olive">Rp</span>
                                                     </div>
-                                                    <input type="text" class="form-control rupiah" name="biaya" id="biaya" autocomplete="off" required value="<?= $data['biaya']; ?>">
+                                                    <input type="text" class="form-control rupiah" name="biaya" id="biaya" autocomplete="off" required readonly value="<?= $data['biaya']; ?>">
                                                 </div>
                                             </div>
                                         </div>

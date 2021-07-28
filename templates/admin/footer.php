@@ -267,6 +267,81 @@
                     </div>
 
 
+
+                <!-- PENDAPATAN DOKTER -->
+                <div class="card">
+                        <a class="btn bg-gradient-navy btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" href="#pendapatan-dokter">
+                            Pendapatan Dokter
+                        </a>
+                        <div id="pendapatan-dokter" class="panel-collapse collapse">
+                            <form role="form" method="POST" target="_blank" action="<?= base_url('admin/laporan/pendapatan-dokter') ?>">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Nama Dokter</label>
+                                                <select class="form-control select2" name="id_dokter" data-placeholder="Pilih" required>
+                                                    <option value=""></option>
+                                                    <?php
+                                                        $dokter = $koneksi->query("SELECT * FROM dokter ORDER BY nama ASC");
+                                                        foreach($dokter as $row){
+                                                    ?>
+                                                    `<option value="<?= $row['id_dokter'] ?>"><?= $row['nama'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Bulan</label>
+                                                <select class="form-control select2" name="bulan" data-placeholder="Pilih Bulan" required>
+                                                    <option value=""></option>
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Tahun</label>
+                                                <input type="number" class="form-control" name="tahun" required maxlength="4" value="<?= date('Y') ?>" id="tahun_pemeriksaan">
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <div class="my-auto">
+                                                    <button type="submit" name="cetak" class="btn bg-gradient-primary">
+                                                        <i class="fa fa-print"> Cetak</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="card-footer">
+                                    <button type="submit" name="cetak_semua" class="btn bg-gradient-info">
+                                        <i class="fa fa-print"> Cetak Semua Data</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
                 </div>
 
 
